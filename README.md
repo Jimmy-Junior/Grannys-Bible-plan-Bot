@@ -74,10 +74,13 @@ function sendDailyReading() {
       break;
     }
   }
-}How it picks the row
+}
+```
+How it picks the row
 It does not remember "last row sent". Every run it:
 Gets all rows A2:B100Loops row by rowChecks if (rowDate == today)Sends that one row, then stops (break)If a day is missed, it skips it — it won't double-send the next day to catch up.
-4. Test On My Own Phone First
+
+## 4. Test On My Own Phone First
 Never test on Gogo first.
 Set GRANDMA_PHONE + APIKEY to MY number + MY keyIn Apps Script, click Run → sendDailyReadingAllow permissions on first run (Review permissions → Allow)Click Run againCheck WhatsApp — should arrive in ∼10 seconds with today's reading5. Deployment — Set The Timer
 Switch GRANDMA_PHONE + APIKEY back to Gogo's number + Gogo's keySave (Ctrl+S)In Apps Script left sidebar → Triggers (clock icon) → + Add TriggerFunction to run: sendDailyReadingDeployment: HeadEvent source: Time-drivenType: Day timerTime of day: 7am to 8amSave → Allow permissionsTimezone Check (Important for SA)
