@@ -81,14 +81,19 @@ It does not remember "last row sent". Every run it:
 Gets all rows A2:B100Loops row by rowChecks if (rowDate == today)Sends that one row, then stops (break)If a day is missed, it skips it — it won't double-send the next day to catch up.
 
 ## 4. Test On My Own Phone First
+
 Never test on Gogo first.
+
 Set GRANDMA_PHONE + APIKEY to MY number + MY keyIn Apps Script, click Run → sendDailyReadingAllow permissions on first run (Review permissions → Allow)Click Run againCheck WhatsApp — should arrive in ∼10 seconds with today's reading5. Deployment — Set The Timer
 Switch GRANDMA_PHONE + APIKEY back to Gogo's number + Gogo's keySave (Ctrl+S)In Apps Script left sidebar → Triggers (clock icon) → + Add TriggerFunction to run: sendDailyReadingDeployment: HeadEvent source: Time-drivenType: Day timerTime of day: 7am to 8amSave → Allow permissionsTimezone Check (Important for SA)
-Apps Script → Project Settings (gear icon) → Time zone must be:javascriptAfrica/Johannesburg (GMT+02:00)Otherwise it will send at 7am US time, not SA time.
+Apps Script → Project Settings (gear icon) → Time zone must be :javascriptAfrica/Johannesburg (GMT+02:00)Otherwise it will send at 7am US time, not SA time.
 Verify It Ran
 Apps Script → Executions → Should show sendDailyReading - Completed around 7am each day.
-TroubleshootingProblemFixMessage never arrives, log says CompletedAPI key is wrong or belongs to a different numberScript failsPhone format wrong — must be 27..., no +, no leading 0Sends at wrong timeTimezone is not Africa/JohannesburgNo message on a dayThat date is missing / misspelled in Column ATab renamedUpdate getSheetByName("Sheet1") to match new tab nameFilesjavascript/README.md
+
+Troubleshooting Problem Fix Message never arrives, log says CompletedAPI key is wrong or belongs to a different numberScript failsPhone format wrong — must be 27..., no +, no leading 0Sends at wrong timeTimezone is not Africa/JohannesburgNo message on a day That date is missing / misspelled in Column A Tab renamedUpdate getSheetByName("Sheet1") to match new tab nameFilesjavascript/README.md
 /Code.gs
-/plan.csvFuture Improvement
+/plan.csv
+
+## Future Improvements
 Add Column C Sent — script writes "Sent" + timestamp after sending, so you can see in the Sheet which days were delivered without asking Gogo.Move to official WhatsApp Cloud API if Whatabot ever fills up like CallMeBot did.Built With
 Google SheetsGoogle Apps ScriptWhatabot APIWhatsApp
